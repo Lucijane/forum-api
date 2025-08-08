@@ -97,17 +97,77 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
-# Testando requisições
+## 🔑 Autenticação
 
-Para testar a requisição, basta clicar em cima de um dos endpoints desejados para visualizar a sua estrutura.
+Para acessar rotas protegidas, é necessário um **token JWT**.  
+Primeiro, faça login para obter o token.
+
+```http
+POST /auth/signin
+Content-Type: application/json
+
+{
+  "email": "usuario@email.com",
+  "password": "123456"
+}
+```
+
+📌 Resposta:
+```json
+{
+  "access_token": "seu_token_aqui"
+}
+```
+
+Use o token no header:
+```
+Authorization: Bearer seu_token_aqui
+```
+
+---
+
+## 📚 Endpoints Disponíveis
 
 <details>
 <summary><strong>USERS</strong></summary>
 
 ```http
-POST   /users
-GET    /users
-GET    /users
-GET    /users/{id}
-PATCH  /users/{id}
-DELETE /users/{id}
+POST   /user/signup        # Criar usuário
+GET    /user               # Listar usuários
+GET    /user/{id}          # Buscar usuário por ID
+```
+</details>
+
+<details>
+<summary><strong>QUESTIONS</strong></summary>
+
+```http
+POST   /questions          # Criar pergunta
+GET    /questions          # Listar perguntas
+GET    /questions/{id}     # Buscar pergunta por ID
+```
+</details>
+
+<details>
+<summary><strong>ANSWERS</strong></summary>
+
+```http
+POST   /answers/{questionId}   # Criar resposta para uma pergunta
+```
+</details>
+
+---
+
+## 🛠️ Tecnologias
+
+- **NestJS**
+- **Prisma ORM**
+- **PostgreSQL**
+- **JWT Authentication**
+- **Docker** (opcional)
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT.
